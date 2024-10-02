@@ -10,7 +10,7 @@ group_id='c4f82438-40a1-7012-f71a-8ce3a560af3c'
 # aws qbusiness application id. 
 qbusiness_app_id='760ec35b-fb8b-412a-9705-acd5b3ae3b96'
 # aws account id with qbusiness deployed
-aws_account_id='381492046424'
+aws_account_id='xxxxxxxxxx'
 # control tower roles to be used from the management account. This is to interact with the qbusiness app
 control_tower_role=f'arn:aws:iam::{aws_account_id}:role/AWSControlTowerExecution'
 
