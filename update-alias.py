@@ -56,6 +56,7 @@ def get_user_emails(user_id_list, idc_id):
         idc_emails.append(get_user_email(user_id, idc_id))
     return idc_emails
 
+# function to create an alias in qbusiness app
 def qbusiness_update_user(email, qbusiness_app_id):
     qbusiness_client = assume_role(control_tower_role).client('qbusiness')
     response = qbusiness_client.update_user(
@@ -70,6 +71,7 @@ def qbusiness_update_user(email, qbusiness_app_id):
     print(f"User {email} updated in qbusiness. Response is {response['userAliasesUpdated']}")
 
 # Get a list of emails that exist in the IDC group and confluence-user group
+# but return the orginal email format from the IDC
 def find_common_emails(emailList, emailListLowerCase):
     commonEmails = []
     for email in emailList:
@@ -96,7 +98,7 @@ def lambda_handler(event, context):
     user_id_list = list(get_users_from_group(group_id, idc_id))
     idc_user_emails = get_user_emails(user_id_list, idc_id)
 
-    # get the list of user emails id from confluence
+    # get the list of user emails id from confluence's user export .csv file
     confluence_user_emails = get_confluence_user_emails('export-users.csv')
 
     # email ids in both idc and confluence
